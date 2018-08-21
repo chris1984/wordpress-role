@@ -1,0 +1,21 @@
+---
+wordpress_wp_version: '4.9.8'
+wordpress_wp_install_dir: '/var/sites/awesome_wordpress_site'
+wordpress_wp_db_name: 'database_name_here'
+wordpress_wp_db_user: 'username_here'
+wordpress_wp_db_password: 'password_here'
+wordpress_wp_db_host: 'localhost'
+wordpress_wp_db_charset: 'utf8'
+wordpress_wp_db_collate: ''
+wordpress_wp_table_prefix: 'wp_'
+wordpress_wp_debug: false
+
+wordpress_wp_fs_method: 'direct'
+wordpress_wp_lang: ''
+
+wordpress_wp_mysql_enable: true
+wordpress_wp_mysql_db_create: true
+wordpress_wp_mysql_site_restore_saved_db: false
+wordpress_wp_backup_local_path: "{{ playbook_dir }}/_private/backup"
+wordpress_wp_database_backup: "{{ wordpress_wp_backup_local_path }}/{{ wordpress_wp_site_name }}.sql"
+wordpress_wp_site_name: "{{ ansible_fqdn }}"

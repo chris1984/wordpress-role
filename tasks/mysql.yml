@@ -1,0 +1,38 @@
+---
+
+- name: Create database for each site
+  mysql_db:
+    name: {{ wordpress_wp_db_name }}
+    state: present
+    login_host: {{ wordpress_wp_db_host }}
+    login_user: {{ wordpress_wp_db_user}}
+    login_password: {{ wordpress_wp_db_password }}
+  register: wordpress_wp_mysql_db_create
+
+- name: Copy saved database to server
+  copy:
+    src: {{ wordpress_wp_database_backup }}
+    dest: /tmp/{{ wordpress_wp_site_name }}.sql
+    login_user: {{ wordpress_wp_db_user}}
+    login_password: {{ wordpress_wp_db_password }}
+  when: wordpress_wp_mysql_site_restore_saved_db
+
+- name: Import saved database
+  mysql_db:
+    name: {{ wordpress_wp_db_name }}
+    state: import
+    target: /tmp/{{ wordpress_wp_site_name }}.sql
+    login_host: {{ wordpress_wp_db_host }}
+    login_user: {{ wordpress_wp_db_user}}
+    login_password: {{ wordpress_wp_db_password }}
+  when: wp_mysql_site_restore_saved_db
+
+- name: Create/assign database user to db and grant permissions
+  mysql_user:
+    name: {{ wordpress_wp_db_user }}
+    password: {{ wordpress_wp_db_password }}
+    priv: '{{ wordpress_wp_db_name }}.*:ALL'
+    state: present
+    login_host: {{ wordpress_wp_db_host }}
+    login_user: {{ wordpress_wp_db_user}}
+    login_password: {{ wordpress_wp_db_password }}

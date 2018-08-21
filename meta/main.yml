@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: chris1984
+  description: Wordpress
+  company: ""
+  license: "MIT"
+  min_ansible_version: 2.2
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+  - name: openSUSE
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: SLES
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  categories:
+  - development
+  - web

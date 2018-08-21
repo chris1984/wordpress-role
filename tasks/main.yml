@@ -1,0 +1,60 @@
+---
+
+- name: Wordpresss | Create or restore site database
+  include: mysql.yml
+  when: wordpress_wp_mysql_enable
+
+- name: Wordpresss | Ensure that installation directory exists
+  file:
+    path: {{wordpress_wp_install_dir|dirname}}
+    state: directory
+
+- name: Wordpresss | Download {{wordpress_wp_version}} to /tmp
+  get_url:
+    url: http://wordpress.org/wordpress-{{wordpress_wp_version}}.tar.gz
+    force: no
+    dest: /tmp/wordpress-{{wordpress_wp_version}}.tar.gz
+
+- name: Wordpresss | Extract archive
+  unarchive:
+    src: /tmp/wordpress-{{wordpress_wp_version}}.tar.gz
+    dest: /tmp
+    copy: no
+
+- name: Wordpresss | Move extracted directory to {{wordpress_wp_install_dir}}
+  command: /bin/mv /tmp/wordpress {{wordpress_wp_install_dir}}
+  args:
+    creates: {{wordpress_wp_install_dir}}
+
+- name: Wordpresss | Remove wordpress-{{wordpress_wp_version}}.tar.gz
+  file:
+    path: /tmp/wordpress-{{wordpress_wp_version}}.tar.gz
+    state: absent
+
+- name: Wordpresss | Fetch random salts for wp-config.php
+  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
+  sudo: no
+  register: 'wp_salt'
+
+- name: Wordpresss | Copy wp-config.php file
+  template:
+    src: wp-config.php.j2
+    dest: {{wordpress_wp_install_dir}}/wp-config.php
+
+- name: Wordpresss | Change ownership of installation directory
+  file:
+    path: {{wordpress_wp_install_dir}}
+    owner: www-data
+    group: www-data
+    mode: 775
+    state: directory
+    recurse: yes
+
+- name: Wordpresss | Change ownership of wp-content directory
+  file:
+    path: {{wordpress_wp_install_dir}}/wp-content/
+    owner: www-data
+    group: www-data
+    mode: 755
+    state: directory
+    recurse: yes

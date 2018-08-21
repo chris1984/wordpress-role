@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars:
+    wordpress_wp_version: '4.9.8'
+    wordpress_wp_install_dir: '/var/sites/awesome_wordpress_site'
+    wordpress_wp_db_name: 'database_name_here'
+    wordpress_wp_db_user: 'username_here'
+    wordpress_wp_db_password: 'password_here'
+    wordpress_wp_db_host: 'localhost'
+  roles:
+  - chris1984.wordpress
