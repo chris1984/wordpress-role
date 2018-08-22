@@ -26,32 +26,32 @@ $ git clone https://github.com/chris1984/wordpress-role.git
 Here is a list of all the default variables for this role, which are also available in `defaults/main.yml`.
 
 ```yaml
-wp_version: '4.9.8'
-wp_install_dir: '/var/sites/awesome_wordpress_site'
-wp_db_name: 'database_name_here'
-wp_db_user: 'username_here'
-wp_db_password: 'password_here'
-wp_db_host: 'localhost'
+wordpress_wp_version: '4.9.8'
+wordpress_wp_install_dir: '/var/sites/awesome_wordpress_site'
+wordpress_wp_db_name: 'database_name_here'
+wordpress_wp_db_user: 'username_here'
+wordpress_wp_db_password: 'password_here'
+wordpress_wp_db_host: 'localhost'
 
-wp_db_charset: 'utf8'
-wp_db_collate: ''
-wp_table_prefix: 'wp_'
-wp_debug: false
+wordpress_wp_db_charset: 'utf8'
+wordpress_wp_db_collate: ''
+wordpress_wp_table_prefix: 'wp_'
+wordpress_wp_debug: false
 
-wp_fs_method: 'direct'
-wp_lang: ''
+wordpress_wp_fs_method: 'direct'
+wordpress_wp_lang: ''
 ```
 
 ## Example playbook
 ```yaml
 - hosts: all
   vars:
-    wp_version: 4.0
-    wp_install_dir: '/var/sites/awesome_wordpress_site'
-    wp_db_name: 'database_name_here'
-    wp_db_user: 'username_here'
-    wp_db_password: 'password_here'
-    wp_db_host: 'localhost'
+    wordpress_wp_version: 4.0
+    wordpress_wp_install_dir: '/var/sites/awesome_wordpress_site'
+    wordpress_wp_db_name: 'database_name_here'
+    wordpress_wp_db_user: 'username_here'
+    wordpress_wp_db_password: 'password_here'
+    wordpress_wp_db_host: 'localhost'
   roles:
   - chris1984.wordpress
 ```
