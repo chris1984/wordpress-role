@@ -3,24 +3,24 @@
   apt:
     name: "{{ packages }}"
     state: latest
-    vars:
-      packages:
-      - python-mysqldb
-      - python
-      - python-pip
-      - libmysqlclient-dev
+  vars:
+    packages:
+    - python-mysqldb
+    - python
+    - python-pip
+    - libmysqlclient-dev
     when: wordpress_wp_mysql_enable and ansible_os_family == "Ubuntu"
 
 - name: Wordpress | Ensure MYSQL-Python and dependcices is installed on RPM distros.
   apt:
     name: "{{ packages }}"
     state: latest
-    vars:
-      packages:
-      - python-mysqldb
-      - python
-      - python-pip
-      - libmysqlclient-dev
+  vars:
+    packages:
+    - python-mysqldb
+    - python
+    - python-pip
+    - libmysqlclient-dev
     when: wordpress_wp_mysql_enable and ansible_os_family == "RedHat"
 
 - name: Wordpresss | Create site database
