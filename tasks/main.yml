@@ -9,7 +9,7 @@
       - python
       - python-pip
       - libmysqlclient-dev
-   when: wordpress_wp_mysql_enable and ansible_os_family == "Ubuntu"
+    when: wordpress_wp_mysql_enable and ansible_os_family == "Ubuntu"
 
 - name: Wordpress | Ensure MYSQL-Python and dependcices is installed on RPM distros.
   apt:
@@ -21,7 +21,7 @@
       - python
       - python-pip
       - libmysqlclient-dev
-   when: wordpress_wp_mysql_enable and ansible_os_family == "RedHat"
+    when: wordpress_wp_mysql_enable and ansible_os_family == "RedHat"
 
 - name: Wordpresss | Create site database
   include: mysql.yml
@@ -56,7 +56,7 @@
 
 - name: Wordpresss | Fetch random salts for wp-config.php
   local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
-  sudo: no
+  become: false
   register: 'wp_salt'
 
 - name: Wordpresss | Copy wp-config.php file
@@ -75,7 +75,7 @@
 
 - name: Wordpresss | Change ownership of wp-content directory
   file:
-    path: ""{{ wordpress_wp_install_dir }}/wp-content/"
+    path: "{{ wordpress_wp_install_dir }}/wp-content/"
     owner: www-data
     group: www-data
     mode: 755
