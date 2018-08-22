@@ -13,14 +13,14 @@ install:
 
 script:
   # Create symlink to role with correct name
-  - ln -s wordpress-role ../chris1984.wordpress
-  
+  - ln -s wordpress-role ../chris1984.wordpress_role
+
   # Check the role/playbook's syntax.
   - ansible-playbook -i tests/inventory $PLAYBOOK --syntax-check
-  
+
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook -i tests/inventory $PLAYBOOK --connection=local --sudo -vvvv
-  
+
 # Send off to Ansible Galaxy
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

@@ -13,7 +13,7 @@ Features include:
 
 Using `ansible-galaxy`:
 ```shell
-$ ansible-galaxy install chris1984.wordpress
+$ ansible-galaxy install chris1984.wordpress_role
 ```
 
 Using `git`:

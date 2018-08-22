@@ -8,4 +8,4 @@
     wordpress_wp_db_password: 'password_here'
     wordpress_wp_db_host: 'localhost'
   roles:
-  - chris1984.wordpress
+  - chris1984.wordpress_role
