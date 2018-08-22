@@ -6,6 +6,9 @@ Features include:
 -   Configuration of wp-config.php
 -   [Fetch random salts for wp-config.php](https://api.wordpress.org/secret-key/1.1/salt/)
 
+## Build Status
+![alt text](https://travis-ci.org/chris1984/wordpress-role.svg?branch=master "Build Status")
+
 ## Installation
 
 Using `ansible-galaxy`:
