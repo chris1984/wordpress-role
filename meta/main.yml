@@ -12,7 +12,10 @@ galaxy_info:
     - 7
   - name: Ubuntu
     versions:
-    - all
+    - xenial
+    - precise
+    - trusty
+    - bionic
   categories:
   - development
   - web
