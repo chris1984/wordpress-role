@@ -9,7 +9,7 @@
     - python
     - python-pip
     - libmysqlclient-dev
-    when: wordpress_wp_mysql_enable and ansible_os_family == "Ubuntu"
+    when: (wordpress_wp_mysql_enable and ansible_os_family == "Ubuntu")
 
 - name: Wordpress | Ensure MYSQL-Python and dependcices is installed on RPM distros.
   apt:
@@ -21,7 +21,7 @@
     - python
     - python-pip
     - libmysqlclient-dev
-    when: wordpress_wp_mysql_enable and ansible_os_family == "RedHat"
+    when: (wordpress_wp_mysql_enable and ansible_os_family == "RedHat")
 
 - name: Wordpresss | Create site database
   include: mysql.yml
