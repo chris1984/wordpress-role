@@ -19,7 +19,7 @@ script:
   - ansible-playbook -i tests/inventory $PLAYBOOK --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -i tests/inventory $PLAYBOOK --connection=local --sudo -vvvv
+  - ansible-playbook -i tests/inventory $PLAYBOOK --connection=local -vvvv
 
 # Send off to Ansible Galaxy
 notifications:
